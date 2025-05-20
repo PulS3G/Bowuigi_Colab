@@ -1,0 +1,156 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+#form-container {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 20px 30px 30px 30px;
+  border-radius: 10px;
+  box-shadow:
+    0 -6px 8px rgba(0, 0, 0, 0.5), /* sombra negra arriba */
+    rgba(0, 0, 0, 0.5) 0px 10px 15px; /* sombra original */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h1, h2 {
+  color: #111;
+  margin-bottom: 15px;
+}
+
+/* Inputs, selects y textarea */
+.input, select, textarea {
+  padding: 12px;
+  border: 2px solid transparent;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  width: 100%;
+  font-size: 16px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+  box-sizing: border-box;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  transition: height 0.3s ease;
+}
+
+.input:hover,
+.input:focus,
+select:hover,
+select:focus,
+textarea:hover,
+textarea:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.8);
+}
+
+/* Botones */
+button.accordion-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #111;
+  color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.7);
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+button.accordion-btn:hover {
+  background-color: #000;
+}
+
+button.submit-btn {
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+  margin-top: 10px;
+  transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+button.submit-btn:hover {
+  border-color: black;
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.9);
+}
+
+/* Radios */
+.radio-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+
+/* Sección con sombra inferior */
+.section-box {
+  padding-bottom: 20px;
+  border-bottom: 4px solid transparent;
+  box-shadow: inset 0px -5px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Más espaciado en la segunda mitad del formulario */
+.second-half {
+  margin-top: 40px;
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor acordeón */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.accordion-content.open {
+  max-height: 500px; /* altura suficiente para mostrar contenido */
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #form-container {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
