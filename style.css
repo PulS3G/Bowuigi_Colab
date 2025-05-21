@@ -1,9 +1,10 @@
-/* Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 
 body, html {
   height: 100%;
@@ -15,45 +16,37 @@ body, html {
   padding: 20px;
 }
 
+
 #form-container {
   width: 100%;
   max-width: 600px;
   background: white;
-  padding: 20px 30px 30px 30px;
+  padding: 25px;
   border-radius: 10px;
-  box-shadow:
-    0 -6px 8px rgba(0, 0, 0, 0.5), /* sombra negra arriba */
-    rgba(0, 0, 0, 0.5) 0px 10px 15px; /* sombra original */
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3), 0 10px 15px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
+
 
 h1, h2 {
   color: #111;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-/* Inputs, selects y textarea */
 .input, select, textarea {
-  padding: 12px;
-  border: 2px solid transparent;
+  padding: 10px;
+  border: 2px solid transparent; 
   background-color: white;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  border-radius: 6px;
   width: 100%;
   font-size: 16px;
-  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
-  box-sizing: border-box;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-textarea {
-  resize: none;
-  width: 100%;
-  max-width: 100%;
-  min-height: 100px;
-  transition: height 0.3s ease;
+  transition: border 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+ 
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.6);
+  margin-bottom: 10px;
 }
 
 .input:hover,
@@ -63,94 +56,176 @@ select:focus,
 textarea:hover,
 textarea:focus {
   outline: none;
-  border-color: black;
-  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.8);
+  border: 2px solid black;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.7);
 }
 
-/* Botones */
-button.accordion-btn {
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 6px;
+
+
+
+button {
+  padding: 10px;
   border: none;
-  background-color: #111;
-  color: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.7);
-  transition: background-color 0.3s ease;
-  margin-bottom: 10px;
-  text-align: left;
-}
-
-button.accordion-btn:hover {
-  background-color: #000;
-}
-
-button.submit-btn {
-  padding: 12px;
-  border: 2px solid transparent;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: transparent;
   color: #000;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
-  margin-top: 10px;
-  transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-button.submit-btn:hover {
-  border-color: black;
-  background-color: #000;
-  color: #fff;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.9);
+button:hover {
+  background-color: black;
+  color: white;
 }
 
-/* Radios */
-.radio-group {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 5px;
-  margin-bottom: 12px;
+
+.submit-btn {
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+.submit-btn:hover,
+.submit-btn.selected {
+  background-color: black;
+  color: white;
 }
 
-/* Sección con sombra inferior */
-.section-box {
-  padding-bottom: 20px;
-  border-bottom: 4px solid transparent;
-  box-shadow: inset 0px -5px 10px -5px rgba(0, 0, 0, 0.5);
+
+.accordion-btn {
+  font-weight: bold;
+  text-align: left;
 }
 
-/* Más espaciado en la segunda mitad del formulario */
-.second-half {
-  margin-top: 40px;
-  gap: 40px;
-  display: flex;
-  flex-direction: column;
+.accordion-button {
+  padding: 12px 20px;
+  background-color: #eee;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+
+  /* Sombra en 4 caras */
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Contenedor acordeón */
+.accordion-button:hover {
+  background-color: #ddd;
+  box-shadow: 0 0 12px 5px rgba(0, 0, 0, 0.55);
+}
+
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+  padding: 4px 12px 0 12px; 
+}
+
+.accordion-content.active {
+  max-height: 500px;
+  padding: 18px 20px 20px 20px; 
+}
+
+.accordion-content .input,
+.accordion-content select,
+.accordion-content textarea {
+  box-shadow: none;
+  transition: box-shadow 0.4s ease-in-out;
+}
+
+.accordion-content.active .input,
+.accordion-content.active select,
+.accordion-content.active textarea {
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.6);
 }
 
 .accordion-content.open {
-  max-height: 500px; /* altura suficiente para mostrar contenido */
+  max-height: 500px;
 }
 
-/* Responsive */
+
+.razon-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.razon-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  color: black;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.razon-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.razon-btn.selected {
+  background-color: black;
+  color: white;
+}
+
+
+.custom-type-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 15px;
+}
+
+.tipo-btn {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  color: black;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.tipo-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.tipo-btn.selected {
+  background-color: black !important;
+  color: white;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+
 @media (max-width: 600px) {
   #form-container {
     padding: 20px;
-    max-width: 90%;
+    max-width: 95%;
   }
 
-  .radio-group {
+  .razon-buttons,
+  .custom-type-group {
     flex-direction: column;
-    align-items: flex-start;
+  }
+
+  .tipo-btn {
+    width: 100%;
   }
 }

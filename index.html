@@ -2,73 +2,86 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulario con acordeón y razón</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario Financiero</title>
   <link rel="stylesheet" href="/MATEO-FW-20/05/25/style.css" />
 </head>
 <body>
+  <div id="form-container">
+    <h1>Caja</h1>
 
-<div id="form-container">
-  <h1>Caja</h1>
-
-  <button class="accordion-btn" aria-expanded="false" aria-controls="config-inicial" id="toggle-config">
-    Configuración inicial ▼
-  </button>
-
-  <div class="accordion-content" id="config-inicial" aria-hidden="true">
-    <label for="google-sheet-id">ID Planilla Google:</label>
-    <input id="google-sheet-id" class="input" type="text" placeholder="Ej: 1a2b3c4d5e" />
-
-    <label for="employee-name">Nombre del empleado:</label>
-    <input id="employee-name" class="input" type="text" placeholder="Ej: Juan Pérez" />
-  </div>
-
-  <h2>Transacción</h2>
-
-  <input class="input" type="text" placeholder="Nombre completo" />
   
-  <label for="razon">Razón</label>
-  <select id="razon" class="input">
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="otra">Otra razón (aclarar)</option>
-    <option value="venta">Venta</option>
-    <option value="ingreso">Ingreso</option>
-    <option value="gasto">Gasto</option>
-  </select>
+    <button class="accordion-btn" id="config-toggle">Configuración inicial</button>
+    <div class="accordion-content" id="config-section">
+      <input class="input" type="text" placeholder="ID de la planilla de Google">
+      <input class="input" type="text" placeholder="Nombre del empleado">
+    </div>
 
-  <div class="second-half">
-    <h2>Descripción</h2>
-    <textarea placeholder="Escribe aquí tu descripción..."></textarea>
+    <h2>Transacción</h2>
+
+   
+    <div class="razon-buttons">
+      <button type="button" class="razon-btn" data-value="otra">Otra razón (aclarar)</button>
+      <button type="button" class="razon-btn" data-value="venta">Venta</button>
+      <button type="button" class="razon-btn" data-value="compra">Compra</button>
+      <button type="button" class="razon-btn" data-value="donacion">Donación</button>
+    </div>
+    <input type="hidden" id="razon-hidden" name="razon" />
+
+    <input class="input descripcion-input" type="text" placeholder="Descripción">
+
+  
+    <div class="custom-type-group">
+      <button type="button" class="tipo-btn ingreso" data-value="ingreso">+ Ingreso</button>
+      <button type="button" class="tipo-btn gasto" data-value="gasto">− Gasto</button>
+    </div>
+    <input type="hidden" id="tipo-hidden" name="tipo" />
+
+    
+    <button class="submit-btn" type="submit">Enviar</button>
   </div>
 
-  <div class="radio-group">
-    <label><input type="radio" name="opcion" /> Ingreso</label>
-    <label><input type="radio" name="opcion" /> Gasto </label>
-  </div>
+  <script>
+    
+    const configToggle = document.getElementById("config-toggle");
+    const configSection = document.getElementById("config-section");
+    configToggle.addEventListener("click", () => {
+      configSection.classList.toggle("open");
+    });
 
-  <button class="submit-btn" type="submit">Enviar</button>
-</div>
+    
+    const razonBtns = document.querySelectorAll(".razon-btn");
+    const razonHidden = document.getElementById("razon-hidden");
 
-<script>
-  const toggleBtn = document.getElementById('toggle-config');
-  const configSection = document.getElementById('config-inicial');
+    razonBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const alreadySelected = btn.classList.contains("selected");
+        razonBtns.forEach(b => b.classList.remove("selected"));
+        if (!alreadySelected) {
+          btn.classList.add("selected");
+          razonHidden.value = btn.dataset.value;
+        } else {
+          razonHidden.value = "";
+        }
+      });
+    });
 
-  toggleBtn.addEventListener('click', () => {
-    const isOpen = configSection.classList.contains('open');
+   
+    const tipoBtns = document.querySelectorAll(".tipo-btn");
+    const tipoHidden = document.getElementById("tipo-hidden");
 
-    if (isOpen) {
-      configSection.classList.remove('open');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      toggleBtn.textContent = 'Configuración inicial ▼';
-      configSection.setAttribute('aria-hidden', 'true');
-    } else {
-      configSection.classList.add('open');
-      toggleBtn.setAttribute('aria-expanded', 'true');
-      toggleBtn.textContent = 'Configuración inicial ▲';
-      configSection.setAttribute('aria-hidden', 'false');
-    }
-  });
-</script>
-
+    tipoBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const alreadySelected = btn.classList.contains("selected");
+        tipoBtns.forEach(b => b.classList.remove("selected"));
+        if (!alreadySelected) {
+          btn.classList.add("selected");
+          tipoHidden.value = btn.dataset.value;
+        } else {
+          tipoHidden.value = "";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
